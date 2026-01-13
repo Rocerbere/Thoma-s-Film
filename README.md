@@ -1,2 +1,9 @@
-# Thoma-s-Film
-Site officiel 
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0; url=accueil.html">
+  <title>Redirect</title>
+</head>
+<body></body>
+</html>
