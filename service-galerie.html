@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thoma’s Film — Services & Galerie</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+<header>
+  <div class="container topbar">
+    <a class="back" href="accueil.html">← Accueil</a>
+
+    <div class="brand" aria-label="Thoma’s Film">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>
+        <span class="brand-title">Thoma’s Film</span>
+        <span class="brand-sub">Services & Galerie</span>
+      </span>
+    </div>
+
+    <div class="right">
+      <div class="toggles">
+        <button class="toggle" type="button" data-toggle="theme" data-on="false" aria-label="Basculer blanc/noir">
+          <span class="label">Blanc</span>
+          <span class="switch" aria-hidden="true"><span class="knob"></span></span>
+        </button>
+        <button class="toggle" type="button" data-toggle="device" data-on="false" aria-label="Basculer ordi/téléphone">
+          <span class="label">Téléphone</span>
+          <span class="switch" aria-hidden="true"><span class="knob"></span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container page">
+  <section class="card hero">
+    <div style="display:flex; justify-content:center;">
+      <span class="kicker"><span class="dot"></span> 4 services • liens galerie</span>
+    </div>
+    <h1>Services & Galerie</h1>
+    <p class="lead">
+      Tes prestations (photo/vidéo/drone/montage) + des liens vers tes contenus (Drive, YouTube, Insta, etc.).
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href="contact-devis.html#devis">Demander un devis</a>
+      <a class="btn" href="#galerie">Aller à la galerie</a>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <h2>Services disponibles</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="tile">
+        <h3>📸 Photographie</h3>
+        <p>Portrait • produit • événementiel • retouches</p>
+        <ul>
+          <li>Shooting + sélection</li>
+          <li>Retouches propres</li>
+          <li>Livraison web/print</li>
+        </ul>
+        <div class="actions" style="justify-content:flex-start;">
+          
+        </div>
+      </div>
+
+      <div class="tile">
+        <h3>🎥 Vidéo</h3>
+        <p>Captation + montage • reels • interviews • aftermovies</p>
+        <ul>
+          <li>Montage + titrage</li>
+          <li>Exports multi-formats</li>
+          <li>Option sous-titres</li>
+        </ul>
+        <div class="actions" style="justify-content:flex-start;">
+         
+        </div>
+      </div>
+
+      <div class="tile">
+        <h3>🚁 Drone</h3>
+        <p>Plans aériens • establishing shots • best-of</p>
+        <ul>
+          <li>Plans aériens propres</li>
+          <li>Intégration au montage</li>
+          <li>Version courte/longue</li>
+        </ul>
+        <div class="actions" style="justify-content:flex-start;">
+          
+        </div>
+      </div>
+
+      <div class="tile">
+        <h3>🎬 Montage vidéo</h3>
+        <p>Montage • rythme • colorimétrie • exports</p>
+        <ul>
+          <li>Storytelling + rythme</li>
+          <li>Colorimétrie (look)</li>
+          <li>Livraison optimisée RS</li>
+        </ul>
+        <div class="actions" style="justify-content:flex-start;">
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="galerie">
+    <div class="section-title">
+      <h2>Galerie</h2>
+      <small>liens vers tes contenus</small>
+    </div>
+
+    <div class="grid-2">
+      <div class="tile link-card">
+        <div>
+          <h3>📸 Album Photos (Drive / Portfolio)</h3>
+          <p>Remplace le lien “Ouvrir” par ton URL.</p>
+          <div class="pill">Photo</div>
+        </div>
+        <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
+      </div>
+
+      <div class="tile link-card">
+        <div>
+          <h3>🎥 Playlist Vidéos (YouTube / Vimeo)</h3>
+          <p>Remplace le lien “Ouvrir” par ton URL.</p>
+          <div class="pill">Vidéo</div>
+        </div>
+        <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
+      </div>
+
+      <div class="tile link-card">
+        <div>
+          <h3>🚁 Drone Best-of</h3>
+          <p>Un lien vers ton best-of drone.</p>
+          <div class="pill">Drone</div>
+        </div>
+        <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
+      </div>
+
+      <div class="tile link-card">
+        <div>
+          <h3>🎬 Avant/Après (Montage)</h3>
+          <p>Un lien vers une vidéo qui montre ton montage.</p>
+          <div class="pill">Montage</div>
+        </div>
+        <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
+      </div>
+    </div>
+
+    <div class="footer">© <span data-year></span> Thoma’s Film</div>
+  </section>
+</main>
+</body>
+</html>
