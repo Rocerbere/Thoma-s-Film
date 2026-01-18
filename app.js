@@ -9,7 +9,6 @@
     document.documentElement.setAttribute("data-theme", theme);
     document.documentElement.setAttribute("data-device", device);
 
-    // update toggle UI states if present
     const themeToggle = document.querySelector('[data-toggle="theme"]');
     const deviceToggle = document.querySelector('[data-toggle="device"]');
 
@@ -17,49 +16,43 @@
     if (deviceToggle) deviceToggle.setAttribute("data-on", device === "mobile" ? "true" : "false");
   }
 
-  function setTheme(nextTheme){
-    localStorage.setItem(KEY_THEME, nextTheme);
+  function toggleTheme(){
+    const current = document.documentElement.getAttribute("data-theme") || "dark";
+    localStorage.setItem(KEY_THEME, current === "dark" ? "light" : "dark");
     applySettings();
   }
 
-  function setDevice(nextDevice){
-    localStorage.setItem(KEY_DEVICE, nextDevice);
+  function toggleDevice(){
+    const current = document.documentElement.getAttribute("data-device") || "desktop";
+    localStorage.setItem(KEY_DEVICE, current === "desktop" ? "mobile" : "desktop");
     applySettings();
   }
 
   // init
   applySettings();
 
-  // toggles
-  const themeToggle = document.querySelector('[data-toggle="theme"]');
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-theme") || "dark";
-      setTheme(current === "dark" ? "light" : "dark");
-    });
-  }
+  // events
+  const themeBtn = document.querySelector('[data-toggle="theme"]');
+  if(themeBtn) themeBtn.addEventListener("click", toggleTheme);
 
-  const deviceToggle = document.querySelector('[data-toggle="device"]');
-  if (deviceToggle) {
-    deviceToggle.addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-device") || "desktop";
-      setDevice(current === "desktop" ? "mobile" : "desktop");
-    });
-  }
+  const deviceBtn = document.querySelector('[data-toggle="device"]');
+  if(deviceBtn) deviceBtn.addEventListener("click", toggleDevice);
 
   // year
   document.querySelectorAll("[data-year]").forEach(el => {
     el.textContent = String(new Date().getFullYear());
   });
 
-  // Contact/Devis form -> mailto
+  // mailto devis
   const form = document.querySelector("form[data-mailto]");
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
+
       const to = form.getAttribute("data-mailto") || "";
 
-      const name = form.querySelector("[name=name]")?.value?.trim() || "";
+      const lastname = form.querySelector("[name=lastname]")?.value?.trim() || "";
+      const firstname = form.querySelector("[name=firstname]")?.value?.trim() || "";
       const email = form.querySelector("[name=email]")?.value?.trim() || "";
       const phone = form.querySelector("[name=phone]")?.value?.trim() || "";
       const service = form.querySelector("[name=service]")?.value?.trim() || "";
@@ -67,9 +60,9 @@
       const budget = form.querySelector("[name=budget]")?.value?.trim() || "";
       const message = form.querySelector("[name=message]")?.value?.trim() || "";
 
-      const subject = encodeURIComponent(`Devis — ${service || "Projet"} — ${name || "Client"}`);
+      const subject = encodeURIComponent(`Devis — ${service || "Projet"} — ${firstname} ${lastname}`.trim());
       const body = encodeURIComponent(
-        `Nom: ${name}\nEmail: ${email}\nTéléphone: ${phone}\n\nService: ${service}\nDeadline: ${deadline}\nBudget: ${budget}\n\nMessage:\n${message}\n`
+        `Nom: ${lastname}\nPrénom: ${firstname}\nEmail: ${email}\nTéléphone: ${phone}\n\nService: ${service}\nDeadline: ${deadline}\nBudget: ${budget}\n\nMessage:\n${message}\n`
       );
 
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
