@@ -1,127 +1,78 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thoma’s Film — Contact & Devis</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="app.js" defer></script>
-</head>
-<body>
-  <div class="bg-layer" aria-hidden="true"></div>
-<header>
-  <div class="container topbar">
-    <a class="back" href="accueil.html">← Accueil</a>
+(() => {
+  const KEY_THEME = "tf_theme";   // "dark" | "light"
+  const KEY_DEVICE = "tf_device"; // "desktop" | "mobile"
 
-    <div class="brand">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span>
-        <span class="brand-title">Thoma’s Film</span>
-        <span class="brand-sub">Contact & Devis</span>
-      </span>
-    </div>
+  function applySettings() {
+    const theme = localStorage.getItem(KEY_THEME) || "dark";
+    const device = localStorage.getItem(KEY_DEVICE) || "desktop";
 
-    <div class="right">
-      <div class="toggles">
-        <button class="toggle" type="button" data-toggle="theme" data-on="false" aria-label="Basculer blanc/noir">
-          <span class="label">Blanc</span>
-          <span class="switch" aria-hidden="true"><span class="knob"></span></span>
-        </button>
-       
-       
-      </div>
-    </div>
-  </div>
-</header>
+    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.setAttribute("data-device", device);
 
-<main class="container page">
-  <section class="card hero">
-    <div style="display:flex; justify-content:center;">
-      <span class="kicker"><span class="dot"></span> Réponse rapide</span>
-    </div>
-    <h1>Contact & Devis</h1>
-    <p class="lead">
-      Donne le maximum d’infos (type de service, deadline, durée, budget). Le formulaire prépare un email.
-    </p>
+    // update toggle UI states if present
+    const themeToggle = document.querySelector('[data-toggle="theme"]');
+    const deviceToggle = document.querySelector('[data-toggle="device"]');
 
-    <div class="actions">
-      <a class="btn primary" href="#devis">Aller au devis</a>
-      <a class="btn" href="mailto:thomaspawlowski17@gmail.com">Envoyer un email</a>
-    </div>
-  </section>
+    if (themeToggle) themeToggle.setAttribute("data-on", theme === "light" ? "true" : "false");
+    if (deviceToggle) deviceToggle.setAttribute("data-on", device === "mobile" ? "true" : "false");
+  }
 
-  <section class="card" id="devis">
-    <div class="section-title">
-      <h2>Devis</h2>
-      <small>Formulaire</small>
-    </div>
+  function setTheme(nextTheme){
+    localStorage.setItem(KEY_THEME, nextTheme);
+    applySettings();
+  }
 
-    <div class="grid-2">
-      <div class="tile">
-        <h3>Infos</h3>
-        <p>
-          Email : <a href="mailto:thomaspawlowski17@gmail.com">thomaspawlowski17@gmail.com</a><br/>
-          Zone : Marseille & alentours (déplacement possible)
-        </p>
-        <div class="actions" style="justify-content:flex-start;">
-          <a class="btn" href="service-galerie.html">Voir services</a>
-          <a class="btn" href="reseaux.html">Réseaux</a>
-        </div>
-      </div>
+  function setDevice(nextDevice){
+    localStorage.setItem(KEY_DEVICE, nextDevice);
+    applySettings();
+  }
 
-      <div class="tile">
-        <form class="form" data-mailto="thomaspawlowski17@gmail.com">
-          <div>
-            <label for="name">Nom</label>
-            <input id="name" name="name" required placeholder="Ton nom" />
-                        <label for="name">Prénom</label>
-            <input id="name" name="name" required placeholder="Ton prénom" />
-          </div>
+  // init
+  applySettings();
 
-          <div>
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required placeholder="tonmail@exemple.com" />
-          </div>
+  // toggles
+  const themeToggle = document.querySelector('[data-toggle="theme"]');
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      setTheme(current === "dark" ? "light" : "dark");
+    });
+  }
 
-          <div>
-            <label for="phone">Téléphone</label>
-            <input id="phone" name="phone" placeholder="06..." />
-          </div>
+  const deviceToggle = document.querySelector('[data-toggle="device"]');
+  if (deviceToggle) {
+    deviceToggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-device") || "desktop";
+      setDevice(current === "desktop" ? "mobile" : "desktop");
+    });
+  }
 
-          <div>
-            <label for="service">Service</label>
-            <select id="service" name="service" required>
-              <option value="">Choisir…</option>
-              <option>Photographie</option>
-              <option>Vidéo</option>
-              <option>Drone</option>
-              <option>Montage vidéo</option>
-              <option>Autre</option>
-            </select>
-          </div>
+  // year
+  document.querySelectorAll("[data-year]").forEach(el => {
+    el.textContent = String(new Date().getFullYear());
+  });
 
-          <div>
-            <label for="deadline">Deadline</label>
-            <input id="deadline" name="deadline" placeholder="Ex: 15/02" />
-          </div>
+  // Contact/Devis form -> mailto
+  const form = document.querySelector("form[data-mailto]");
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const to = form.getAttribute("data-mailto") || "";
 
-          <div>
-            <label for="budget">Budget (optionnel)</label>
-            <input id="budget" name="budget" placeholder="Ex: 300€ / 800€ / …" />
-          </div>
+      const name = form.querySelector("[name=name]")?.value?.trim() || "";
+      const email = form.querySelector("[name=email]")?.value?.trim() || "";
+      const phone = form.querySelector("[name=phone]")?.value?.trim() || "";
+      const service = form.querySelector("[name=service]")?.value?.trim() || "";
+      const deadline = form.querySelector("[name=deadline]")?.value?.trim() || "";
+      const budget = form.querySelector("[name=budget]")?.value?.trim() || "";
+      const message = form.querySelector("[name=message]")?.value?.trim() || "";
 
-          <div>
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required placeholder="Décris ton besoin (durée, style, références, plateforme…)"></textarea>
-          </div>
+      const subject = encodeURIComponent(`Devis — ${service || "Projet"} — ${name || "Client"}`);
+      const body = encodeURIComponent(
+        `Nom: ${name}\nEmail: ${email}\nTéléphone: ${phone}\n\nService: ${service}\nDeadline: ${deadline}\nBudget: ${budget}\n\nMessage:\n${message}\n`
+      );
 
-          <button class="btn primary" type="submit">Préparer l’email</button>
-        </form>
-      </div>
-    </div>
-
-    <div class="footer">© <span data-year></span> Thoma’s Film</div>
-  </section>
-</main>
-</body>
-</html>
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
+  }
+})();
