@@ -1,202 +1,178 @@
-/* Thoma's Film — 4 pages base
-   ✅ Toggle Blanc/Noir (theme) + Ordi/Téléphone (device) via localStorage (app.js)
-   ✅ Fond qui suit le scroll (pas de "coupe" de couleur)
-*/
+/* ==========================================================
+   THOMA'S FILM — style.css (FULL PREMIUM + LISIBILITÉ)
+   ✅ Mode Noir lisible (bordures visibles)
+   ✅ Mode Blanc clean
+   ✅ Fond FIXE sans trait au scroll (bg-layer)
+   ✅ Mobile safe (pas de blur qui bug)
+   ========================================================== */
 
-/* =========================
-   1) Variables (Dark par défaut)
-   ========================= */
+/* -----------------------------
+   1) THEME (DARK par défaut)
+------------------------------ */
 :root{
-  --radius: 18px;
-  --radius2: 14px;
-  --shadow: 0 24px 70px rgba(0,0,0,.22);
-
-  --max-desktop: 1100px;
-  --max-mobile: 420px;
-
+  --container: 1100px;
+  --container-mobile: 420px;
   --header-h: 76px;
 
-  /* Dark */
-  --bg: #070a14;
-  --bg2:#0b1020;
+  --r1: 18px;
+  --r2: 14px;
 
-  --panel: rgba(255,255,255,.06);
-  --panel2: rgba(255,255,255,.04);
+  --t: 260ms ease;
 
+  /* DARK BACKGROUND */
+  --bg: #01030a;
+  --bg2:#040916;
+
+  /* ✅ DARK : panels plus opaques = meilleure lecture */
+  --panel: rgba(255,255,255,.10);
+  --panel2: rgba(56, 21, 21, 0.07);
+
+  /* TEXT */
   --text: #eef2ff;
-  --muted: rgba(238,242,255,.72);
-  --line: rgba(238,242,255,.14);
+  --muted: rgba(238,242,255,.74);
 
+  /* ✅ DARK : lignes bien visibles */
+  --line: rgba(14, 17, 24, 0.26);
+  --line-soft: rgba(238,242,255,.14);
+
+  /* ACCENTS */
   --accent: #7c3aed;
   --accent2:#06b6d4;
 
-  --transition: 280ms ease;
+  /* SHADOWS */
+  --shadow: 0 30px 90px rgba(50, 37, 37, 0.4);
+  --glow-inset: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+
+  /* HEADER */
+  --header-bg: rgba(7,10,20,.92);
+
+  /* HOVER / FOCUS */
+  --hover: rgba(255,255,255,.10);
+  --focus: rgba(6,182,212,.65);
 }
 
-/* =========================
-   2) Mode Light
-   ========================= */
+/* -----------------------------
+   2) THEME LIGHT
+------------------------------ */
 html[data-theme="light"]{
-  --bg: #f6f7fb;
-  --bg2:#eef2ff;
+  --bg: #ddda27;
+  --bg2:#c381da;
 
-  --panel: rgba(15,23,42,.06);
-  --panel2: rgba(15,23,42,.04);
+  --panel: rgba(15,23,42,.08);
+  --panel2: rgba(15,23,42,.05);
 
   --text: #0f172a;
   --muted: rgba(15,23,42,.68);
-  --line: rgba(15,23,42,.14);
 
-  --shadow: 0 24px 70px rgba(0,0,0,.10);
+  --line: rgba(15,23,42,.18);
+  --line-soft: rgba(15,23,42,.10);
+
+  --shadow: 0 22px 70px rgba(0,0,0,.12);
+  --glow-inset: inset 0 0 0 1px rgba(255,255,255,.55);
+
+  --header-bg: rgba(242, 181, 210, 0.497);
+
+  --hover: rgba(15,23,42,.08);
 }
 
-/* =========================
-   3) Reset / Base
-   ========================= */
+/* -----------------------------
+   3) RESET
+------------------------------ */
 *{ box-sizing:border-box; }
-html,body{ height:100%; }
-html, body{ background-color: var(--bg); }
+
+html, body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 body{
-  margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   color: var(--text);
   line-height: 1.55;
-
-  /* Base qui suit toute la hauteur (no "cut") */
-  background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+  background: transparent; /* ✅ fond géré par bg-layer */
   min-height: 100vh;
-
-  /* nécessaire pour ::after en absolute */
-  position: relative;
-
-  transition: background var(--transition), color var(--transition);
+  overflow-x: hidden;
+  transition: color var(--t);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a{ color:inherit; text-decoration:none; }
 a:hover{ text-decoration:underline; }
 img{ max-width:100%; display:block; }
-button{ font:inherit; }
+button{ font: inherit; }
 
-/* =========================
-   4) Fond "ciné" sans coupe
-   - ::before = halo violet/cyan fixed
-   - ::after  = voile vertical qui se renforce en descendant (scroll)
-   ========================= */
-/* body::before{
-  content:"";
+/* -----------------------------
+   4) BACKGROUND FIXE (ANTI TRAIT SCROLL)
+   ✅ Ajoute <div class="bg-layer"></div> dans le HTML
+------------------------------ */
+.bg-layer{
   position: fixed;
-  inset: 0;
-  z-index: -2;
+  inset: -420px;          /* ultra large => aucune coupure */
+  z-index: -999;
   pointer-events: none;
 
-  background:
-    radial-gradient(900px 520px at 18% 10%, rgba(124,58,237,.22), transparent 60%),
-    radial-gradient(900px 520px at 85% 18%, rgba(6,182,212,.16), transparent 60%);
-  opacity: 1;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 18% 8%, rgba(124,58,237,.20) 0%, transparent 60%),
+    radial-gradient(circle at 85% 12%, rgba(6,182,212,.16) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
 
-  transition: opacity var(--transition);
-} */ 
+  background-repeat: no-repeat;
+  background-position: 18% 0%, 85% 0%, 0 0;
 
-/*body::after{
-  content:"";
-  position: absolute;
-  inset: 0;              
-  z-index: -3;
-  pointer-events: none;
+  /* énorme => jamais de fin */
+  background-size: 240vmax 240vmax, 240vmax 240vmax, cover;
 
-  
-  background:
-    linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(124,58,237,.08) 35%,
-      rgba(124,58,237,.16) 70%,
-      rgba(6,182,212,.10) 100%
-    ),
-    repeating-linear-gradient(
-      0deg,
-      rgba(182, 147, 147, 0.012) 0px,
-      rgba(255,255,255,.012) 1px,
-      transparent 2px,
-      transparent 5px
-    );
-}
-body{
-  overflow-x: hidden;
-}
-*/ 
-/* ===== FOND GLOBAL (anti-ligne) ===== */
-html, body { height: 100%; }
+  transform: translateZ(0);
+  will-change: transform;
 
-html{
-  background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+  transition: background-color var(--t);
 }
 
-/* On enlève le fond du body pour éviter les seams */
-body{
-  background: transparent !important;
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* Halo violet/cyan FIXE */
-html::before{
-  content:"";
-  position: fixed;
-  inset: -2px;                /* <- dépasse un peu : évite la ligne 1px */
-  z-index: -2;
-  pointer-events: none;
-
-  background:
-    radial-gradient(900px 520px at 18% 10%, rgba(124,58,237,.22), transparent 60%),
-    radial-gradient(900px 520px at 85% 18%, rgba(6,182,212,.16), transparent 60%);
-}
-
-/* Voile vertical FIXE (fondu bas de viewport) */
-html::after{
-  content:"";
-  position: fixed;
-  inset: -2px;                /* <- même astuce anti-seam */
-  z-index: -3;
-  pointer-events: none;
-
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(124,58,237,.08) 35%,
-    rgba(124,58,237,.16) 70%,
-    rgba(6,182,212,.10) 100%
-  );
-}
-
-/* =========================
-   5) Container + Device mode
-   ========================= */
+/* -----------------------------
+   5) CONTAINER + PREVIEW MOBILE
+------------------------------ */
 .container{
-  width: min(var(--max-desktop), calc(100% - 32px));
+  width: min(var(--container), calc(100% - 32px));
   margin: 0 auto;
 }
 
-/* Force une largeur "mobile preview" centrée */
 html[data-device="mobile"] .container{
-  width: min(var(--max-mobile), calc(100% - 32px));
+  width: min(var(--container-mobile), calc(100% - 32px));
 }
 
-/* =========================
-   6) Header + Brand + Back + Toggles
-   ========================= */
+html[data-device="mobile"] .grid-2,
+html[data-device="mobile"] .grid-3{
+  grid-template-columns: 1fr !important;
+}
+
+/* -----------------------------
+   6) HEADER
+------------------------------ */
 header{
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: blur(10px);
 
-  background: color-mix(in srgb, var(--bg) 75%, transparent);
-  border-bottom: 1px solid var(--line);
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--line-soft);
+  transition: background var(--t), border-color var(--t);
+}
 
-  transition: background var(--transition), border-color var(--transition);
+/* Blur seulement desktop (mobile safe) */
+@media (min-width: 861px){
+  header{
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+@media (max-width: 860px){
+  header{
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
 }
 
 .topbar{
@@ -207,6 +183,7 @@ header{
   gap: 12px;
 }
 
+/* Brand */
 .brand{
   display:flex;
   align-items:center;
@@ -215,11 +192,11 @@ header{
 }
 
 .brand-mark{
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 14px;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
-  box-shadow: 0 12px 28px rgba(124,58,237,.25);
+  box-shadow: 0 16px 45px rgba(124,58,237,.22);
 }
 
 .brand-title{
@@ -241,49 +218,44 @@ header{
   gap: 10px;
 }
 
-/* Bouton retour Accueil (pages 2/3/4) */
+/* Back button */
 .back{
   display:inline-flex;
   align-items:center;
   gap: 10px;
+
   padding: 10px 12px;
   border-radius: 14px;
+
   border: 1px solid var(--line);
   background: var(--panel2);
   color: var(--text);
-  text-decoration:none;
+
   font-size: 13px;
-  transition: background var(--transition), border-color var(--transition);
+  transition: background var(--t), border-color var(--t);
 }
+.back:hover{ background: var(--hover); text-decoration:none; }
 
-.back:hover{
-  text-decoration:none;
-  background: color-mix(in srgb, var(--panel2) 70%, transparent);
-}
-
-/* Toggles ON/OFF */
-.toggles{
-  display:flex;
-  align-items:center;
-  gap: 10px;
-}
+/* Toggles */
+.toggles{ display:flex; gap: 10px; }
 
 .toggle{
   display:inline-flex;
   align-items:center;
   gap: 10px;
+
   padding: 10px 12px;
   border-radius: 999px;
+
   border: 1px solid var(--line);
   background: var(--panel2);
+
   cursor:pointer;
   user-select:none;
-  transition: background var(--transition), border-color var(--transition);
-}
 
-.toggle:hover{
-  background: color-mix(in srgb, var(--panel2) 70%, transparent);
+  transition: background var(--t), border-color var(--t);
 }
+.toggle:hover{ background: var(--hover); }
 
 .toggle .label{
   font-size: 12px;
@@ -295,11 +267,10 @@ header{
   width: 42px;
   height: 24px;
   border-radius: 999px;
-  border: 1px solid var(--line);
-  background: color-mix(in srgb, var(--panel) 60%, transparent);
+
+  border: 1px solid var(--line-soft);
+  background: var(--panel);
   position: relative;
-  flex: 0 0 auto;
-  transition: background var(--transition), border-color var(--transition);
 }
 
 .knob{
@@ -307,17 +278,19 @@ header{
   top: 50%;
   transform: translateY(-50%);
   left: 3px;
+
   width: 18px;
   height: 18px;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  transition: left 180ms ease;
-  box-shadow: 0 10px 22px rgba(0,0,0,.18);
-}
 
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  box-shadow: 0 8px 18px rgba(0,0,0,.25);
+
+  transition: left 180ms ease;
+}
 .toggle[data-on="true"] .knob{ left: 21px; }
 
-/* Focus visible (accessibilité) */
+/* Focus */
 .back:focus-visible,
 .toggle:focus-visible,
 .btn:focus-visible,
@@ -325,14 +298,13 @@ a:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible{
-  outline: 2px solid color-mix(in srgb, var(--accent2) 60%, transparent);
+  outline: 2px solid var(--focus);
   outline-offset: 2px;
-  border-radius: 12px;
 }
 
-/* =========================
-   7) Layout / Page / Cards
-   ========================= */
+/* -----------------------------
+   7) PAGE / CARDS
+------------------------------ */
 .page{
   padding: 26px 0 60px;
   display:grid;
@@ -340,44 +312,60 @@ select:focus-visible{
 }
 
 .card{
+  position: relative;
+
   border: 1px solid var(--line);
   background: var(--panel);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  border-radius: var(--r1);
+
+  box-shadow: var(--shadow), var(--glow-inset);
   padding: 26px;
   overflow:hidden;
-  transition: background var(--transition), border-color var(--transition);
+
+  transition: background var(--t), border-color var(--t);
 }
 
-.hero{
-  position: relative;
-}
-
-.hero::before{
+/* ✅ effet premium très doux (pas de blanc fort) */
+.card::before{
   content:"";
   position:absolute;
   inset:-2px;
-  background:
-    radial-gradient(600px 300px at 15% 30%, rgba(124,58,237,.20), transparent 60%),
-    radial-gradient(600px 300px at 85% 25%, rgba(6,182,212,.18), transparent 60%),
-    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
   pointer-events:none;
-  opacity: .95;
+  opacity:.60;
+  background:
+    radial-gradient(640px 340px at 14% 26%, rgba(124,58,237,.14), transparent 60%),
+    radial-gradient(640px 340px at 86% 22%, rgba(6,182,212,.12), transparent 60%);
 }
 
-.hero > *{ position: relative; }
+/* ✅ en light : un peu plus lumineux */
+html[data-theme="light"] .card::before{
+  opacity: .40;
+}
+
+.card > *{ position: relative; }
+
+/* HERO */
+.hero h1{
+  margin: 14px 0 8px;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-align:center;
+}
 
 .kicker{
   display:inline-flex;
   align-items:center;
   gap: 10px;
+
   padding: 8px 12px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+
+  border: 1px solid var(--line-soft);
   background: var(--panel2);
+
   font-size: 12px;
   color: var(--muted);
-  transition: background var(--transition), border-color var(--transition);
 }
 
 .dot{
@@ -385,14 +373,6 @@ select:focus-visible{
   height: 8px;
   border-radius: 999px;
   background: var(--accent2);
-}
-
-h1{
-  margin: 14px 0 8px;
-  font-size: clamp(28px, 3.6vw, 44px);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  text-align:center;
 }
 
 .lead{
@@ -411,34 +391,36 @@ h1{
   flex-wrap: wrap;
 }
 
-/* Buttons */
+/* -----------------------------
+   8) BUTTONS
+------------------------------ */
 .btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
   gap: 10px;
+
   padding: 12px 14px;
   border-radius: 14px;
+
   border: 1px solid var(--line);
   background: var(--panel2);
   color: var(--text);
+
   font-size: 13px;
   cursor:pointer;
-  transition: background var(--transition), border-color var(--transition), transform 80ms ease;
-}
 
-.btn:hover{
-  text-decoration:none;
-  background: color-mix(in srgb, var(--panel2) 70%, transparent);
+  transition: background var(--t), transform 80ms ease;
 }
-
+.btn:hover{ background: var(--hover); text-decoration:none; }
 .btn:active{ transform: translateY(1px); }
 
 .btn.primary{
-  border-color: color-mix(in srgb, var(--accent2) 45%, var(--line));
-  background: linear-gradient(135deg, rgba(124,58,237,.35), rgba(6,182,212,.22));
+  border-color: rgba(6,182,212,.40);
+  background: linear-gradient(135deg, rgba(124,58,237,.28), rgba(6,182,212,.18));
 }
 
+/* Section title */
 .section-title{
   display:flex;
   align-items: baseline;
@@ -449,22 +431,24 @@ h1{
 .section-title h2{ margin:0; font-size: 18px; }
 .section-title small{ color: var(--muted); }
 
-/* =========================
-   8) Grids / Tiles / Links cards
-   ========================= */
+/* -----------------------------
+   9) GRID / TILE / PILL
+------------------------------ */
 .grid-2{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .grid-3{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 
 .tile{
   border: 1px solid var(--line);
   background: var(--panel2);
-  border-radius: var(--radius2);
+  border-radius: var(--r2);
   padding: 16px;
-  transition: background var(--transition), border-color var(--transition);
+  box-shadow: var(--glow-inset);
+  transition: background var(--t), border-color var(--t);
 }
 
 .tile h3{ margin: 0 0 6px; font-size: 14px; }
 .tile p{ margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+
 .tile ul{
   margin: 10px 0 0;
   padding-left: 18px;
@@ -484,17 +468,18 @@ h1{
   display:inline-flex;
   padding: 6px 10px;
   border-radius: 999px;
-  border: 1px solid var(--line);
+
+  border: 1px solid var(--line-soft);
   background: var(--panel);
   color: var(--muted);
+
   font-size: 12px;
   margin-top: 8px;
-  transition: background var(--transition), border-color var(--transition);
 }
 
-/* =========================
-   9) Form
-   ========================= */
+/* -----------------------------
+   10) FORM (✅ lisible en mode noir)
+------------------------------ */
 .form{ display:grid; gap: 10px; }
 
 label{
@@ -504,40 +489,56 @@ label{
 
 input, textarea, select{
   width: 100%;
+
   border: 1px solid var(--line);
   border-radius: 14px;
+
   padding: 12px;
-  background: var(--panel2);
+  background: rgba(255,255,255,.06); /* ✅ un poil + sombre */
   color: var(--text);
+
   outline: none;
-  transition: background var(--transition), border-color var(--transition);
+  box-shadow: var(--glow-inset);
+  transition: border-color var(--t), background var(--t);
 }
 
-textarea{
-  min-height: 140px;
-  resize: vertical;
+html[data-theme="light"] input,
+html[data-theme="light"] textarea,
+html[data-theme="light"] select{
+  background: rgba(15,23,42,.04);
+}
+
+textarea{ min-height: 140px; resize: vertical; }
+
+input::placeholder,
+textarea::placeholder{
+  color: rgba(238,242,255,.42);
+}
+
+html[data-theme="light"] input::placeholder,
+html[data-theme="light"] textarea::placeholder{
+  color: rgba(15,23,42,.40);
 }
 
 input:focus, textarea:focus, select:focus{
-  border-color: color-mix(in srgb, var(--accent2) 55%, var(--line));
+  border-color: rgba(6,182,212,.70);
 }
 
-/* =========================
-   10) Footer
-   ========================= */
+/* -----------------------------
+   11) FOOTER
+------------------------------ */
 .footer{
   margin-top: 18px;
   padding-top: 14px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--line-soft);
   color: var(--muted);
   font-size: 12px;
   text-align: center;
-  transition: border-color var(--transition);
 }
 
-/* =========================
-   11) Responsive
-   ========================= */
+/* -----------------------------
+   12) RESPONSIVE
+------------------------------ */
 @media (max-width: 860px){
   .grid-2,.grid-3{ grid-template-columns: 1fr; }
 
@@ -548,4 +549,14 @@ input:focus, textarea:focus, select:focus{
 
   .brand{ min-width: 0; }
   .toggles{ flex-wrap: wrap; justify-content:flex-end; }
+}
+
+/* -----------------------------
+   13) ACCESSIBILITY (reduce motion)
+------------------------------ */
+@media (prefers-reduced-motion: reduce){
+  *{
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
