@@ -8,7 +8,14 @@
   <script src="app.js" defer></script>
 </head>
 <body>
+
   <div class="bg-layer" aria-hidden="true"></div>
+
+  <div class="logo-layer" aria-hidden="true">
+    <img class="logo-dark" src="logo-dark.png" alt="" />
+    <img class="logo-light" src="logo-light.png" alt="" />
+  </div>
+
 <header>
   <div class="container topbar">
     <a class="back" href="accueil.html">← Accueil</a>
@@ -23,12 +30,14 @@
 
     <div class="right">
       <div class="toggles">
-        <button class="toggle" type="button" data-toggle="theme" data-on="false" aria-label="Basculer blanc/noir">
+        <button class="toggle" type="button" data-toggle="theme" data-on="false">
           <span class="label">Blanc</span>
           <span class="switch" aria-hidden="true"><span class="knob"></span></span>
         </button>
-       
-       
+
+        
+          <span class="switch" aria-hidden="true"><span class="knob"></span></span>
+        </button>
       </div>
     </div>
   </div>
@@ -72,10 +81,13 @@
       <div class="tile">
         <form class="form" data-mailto="thomaspawlowski17@gmail.com">
           <div>
-            <label for="name">Nom</label>
-            <input id="name" name="name" required placeholder="Ton nom" />
-                        <label for="name">Prénom</label>
-            <input id="name" name="name" required placeholder="Ton prénom" />
+            <label for="lastname">Nom</label>
+            <input id="lastname" name="lastname" required placeholder="Ton nom" />
+          </div>
+
+          <div>
+            <label for="firstname">Prénom</label>
+            <input id="firstname" name="firstname" required placeholder="Ton prénom" />
           </div>
 
           <div>
