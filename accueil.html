@@ -3,96 +3,107 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+
   <title>Thoma’s Film — Accueil</title>
   <link rel="stylesheet" href="style.css" />
   <script src="app.js" defer></script>
 </head>
-<body> 
+
+<body>
   <div class="bg-layer" aria-hidden="true"></div>
 
-<div class="logo-layer" aria-hidden="true">
-  <img class="logo-dark" src="logo-dark.png" alt="">
-  <img class="logo-light" src="logo-light.png" alt="">
-</div>
-
-  <!-- Fond fixe anti-ligne -->
-  <div class="bg-layer" aria-hidden="true"></div>
-
-  <!-- Logos fond (switch selon mode) -->
   <div class="logo-layer" aria-hidden="true">
-<img src="logo-dark.png">
-<img src="logo-light.png">
-
+    <img class="logo-dark" src="logo-dark.png" alt="" />
+    <img class="logo-light" src="logo-light.png" alt="" />
   </div>
 
-<header>
-  <div class="container topbar">
-    <div class="brand" aria-label="Thoma’s Film">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span>
-        <span class="brand-title">Thoma’s Film</span>
-        <span class="brand-sub">Vidéo • Photo • Drone • Montage</span>
-      </span>
-    </div>
+  <header>
+    <div class="container topbar">
+      <div class="brand" aria-label="Thoma’s Film">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          <span class="brand-title">Thoma’s Film</span>
+          <span class="brand-sub">Vidéo • Photo • Drone • Montage</span>
+        </span>
+      </div>
 
-    <div class="right">
-      <div class="toggles" aria-label="Options">
-        <button class="toggle" type="button" data-toggle="theme" data-on="false" aria-label="Basculer blanc/noir">
-          <span class="label">Blanc</span>
-          <span class="switch" aria-hidden="true"><span class="knob"></span></span>
-        </button>
+      <div class="right">
+        <div class="toggles" aria-label="Options">
+          <button class="toggle" type="button" data-toggle="theme" data-on="false" aria-label="Basculer blanc/noir">
+            <span class="label">Blanc</span>
+            <span class="switch" aria-hidden="true"><span class="knob"></span></span>
+          </button>
 
-        
+
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<main class="container page">
-  <section class="card hero">
-    <div style="display:flex; justify-content:center;">
-      <span class="kicker"><span class="dot"></span> Portfolio & prestations</span>
-    </div>
-
-    <h1>Accueil</h1>
-    <p class="lead">
-      Bienvenue sur Thoma’s Film. Choisis une section : services + galerie, réseaux sociaux, ou contact / devis.
-    </p>
-
-    <div class="actions">
-      <a class="btn primary" href="service-galerie.html">Services & Galerie</a>
-      <a class="btn primary" href="reseaux.html">Réseaux sociaux</a>
-      <a class="btn primary" href="contact-devis.html#devis">Contact & Devis</a>
-    </div>
-  </section>
-
-  <section class="card">
-    <div class="section-title">
-      <h2>Accès rapide</h2>
-      <small>4 catégories</small>
-    </div>
-
-    <div class="grid-2">
-      <div class="tile">
-        <h3>📸 Photo</h3>
-        <p>Shooting, retouches, exports web/print.</p>
+  <main class="container page">
+    <section class="card hero">
+      <div style="display:flex; justify-content:center;">
+        <span class="kicker"><span class="dot"></span> Portfolio créatif • contenu pro & réseaux</span>
       </div>
-      <div class="tile">
-        <h3>🎥 Vidéo</h3>
-        <p>Captation + montage reels / YouTube / interviews.</p>
-      </div>
-      <div class="tile">
-        <h3>🚁 Drone</h3>
-        <p>Plans aériens + intégration au montage final.</p>
-      </div>
-      <div class="tile">
-        <h3>🎬 Montage</h3>
-        <p>Montage, rythme, titrage, sous-titres, colorimétrie.</p>
-      </div>
-    </div>
 
-    <div class="footer">© <span data-year></span> Thoma’s Film</div>
-  </section>
-</main>
+      <h1><span class="title-gradient">Monteur vidéo</span> • Vidéaste • Drone • Photo</h1>
+
+      <p class="lead">
+        Basé à Marseille — je crée des vidéos et visuels impactants : reels, corporate, interviews, événementiel,
+        avec un rendu clean (montage + titrage + colorimétrie).
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href="service-galerie.html#galerie">Voir la galerie</a>
+        <a class="btn warm" href="contact-devis.html#devis">Demander un devis</a>
+        <a class="btn" href="reseaux.html">Réseaux</a>
+      </div>
+
+      <div class="stats" aria-label="Infos rapides">
+        <span class="stat">⚡ Réponse 24–48h</span>
+        <span class="stat">🎞️ Livraisons multi-formats</span>
+        <span class="stat">📍 Marseille + déplacement</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>Ce que je propose</h2>
+        <small>4 catégories</small>
+      </div>
+
+      <div class="grid-2">
+        <div class="tile">
+          <h3>📸 Photo</h3>
+          <p>Shooting, retouches, exports web/print.</p>
+          <div class="pill">Portrait • Produit • Événement</div>
+        </div>
+
+        <div class="tile">
+          <h3>🎥 Vidéo</h3>
+          <p>Captation + montage reels / YouTube / interviews.</p>
+          <div class="pill">Reels • Corporate • Aftermovie</div>
+        </div>
+
+        <div class="tile">
+          <h3>🚁 Drone</h3>
+          <p>Plans aériens + intégration au montage final.</p>
+          <div class="pill">Établissement • Immersif</div>
+        </div>
+
+        <div class="tile">
+          <h3>🎬 Montage & Color</h3>
+          <p>Rythme, titrage, sous-titres, colorimétrie.</p>
+          <div class="pill">Look • Export RS</div>
+        </div>
+      </div>
+
+      <div class="footer">© <span data-year></span> Thoma’s Film</div>
+    </section>
+  </main>
 </body>
 </html>
