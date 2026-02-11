@@ -3,108 +3,124 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thoma’s Film — Réseaux sociaux</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <title>Thoma’s Film — Réseaux</title>
   <link rel="stylesheet" href="style.css" />
   <script src="app.js" defer></script>
 </head>
-<body>
 
+<body>
   <div class="bg-layer" aria-hidden="true"></div>
 
   <div class="logo-layer" aria-hidden="true">
-<img src="logo-dark.png">
-<img src="logo-light.png">
-
+    <img class="logo-dark" src="logo-dark.png" alt="" />
+    <img class="logo-light" src="logo-light.png" alt="" />
   </div>
 
-<header>
-  <div class="container topbar">
-    <a class="back" href="accueil.html">← Accueil</a>
+  <header>
+    <div class="container topbar">
+      <a class="back" href="accueil.html">← Accueil</a>
 
-    <div class="brand">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span>
-        <span class="brand-title">Thoma’s Film</span>
-        <span class="brand-sub">Réseaux sociaux</span>
-      </span>
-    </div>
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          <span class="brand-title">Thoma’s Film</span>
+          <span class="brand-sub">Réseaux sociaux</span>
+        </span>
+      </div>
 
-    <div class="right">
-      <div class="toggles">
-        <button class="toggle" type="button" data-toggle="theme" data-on="false">
-          <span class="label">Blanc</span>
-          <span class="switch" aria-hidden="true"><span class="knob"></span></span>
-        </button>
+      <div class="right">
+        <div class="toggles" aria-label="Options">
+          <button class="toggle" type="button" data-toggle="theme" data-on="false" aria-label="Basculer blanc/noir">
+            <span class="label">Blanc</span>
+            <span class="switch" aria-hidden="true"><span class="knob"></span></span>
+          </button>
 
         
-        </button>
-      </div>
-    </div>
-  </div>
-</header>
-
-<main class="container page">
-  <section class="card hero">
-    <div style="display:flex; justify-content:center;">
-      <span class="kicker"><span class="dot"></span> Tous mes liens</span>
-    </div>
-    <h1>Réseaux sociaux</h1>
-    <p class="lead">
-      Remplace les “#” par tes liens : Instagram, YouTube, TikTok, Vimeo, Behance, LinkedIn…
-    </p>
-
-    <div class="actions">
-      <a class="btn primary" href="contact-devis.html#devis">Demander un devis</a>
-      <a class="btn" href="service-galerie.html#galerie">Voir la galerie</a>
-    </div>
-  </section>
-
-  <section class="card">
-    <div class="section-title">
-      <h2>Liens</h2>
-      <small>cliquables</small>
-    </div>
-
-    <div class="grid-2">
-      <div class="tile link-card">
-        <div>
-          <h3>Instagram</h3>
-          <p>Photos, reels, stories.</p>
-          <div class="pill">@ton_compte</div>
         </div>
-        <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
-      </div>
-
-      <div class="tile link-card">
-        <div>
-          <h3>YouTube</h3>
-          <p>Vidéos longues, projets.</p>
-          <div class="pill">Playlist</div>
-        </div>
-        <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
-      </div>
-
-      <div class="tile link-card">
-        <div>
-          <h3>TikTok</h3>
-          <p>Formats courts.</p>
-          <div class="pill">Shorts</div>
-        </div>
-        <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
-      </div>
-
-      <div class="tile link-card">
-        <div>
-          <h3>Vimeo / Portfolio vidéo</h3>
-          <p>Présentation plus “pro”.</p>
-          <div class="pill">Vimeo</div>
-        </div>
-        <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
       </div>
     </div>
+  </header>
 
-    <div class="footer">© <span data-year></span> Thoma’s Film</div>
-  </section>
-</main>
+  <main class="container page">
+    <section class="card hero">
+      <div style="display:flex; justify-content:center;">
+        <span class="kicker"><span class="dot"></span> Liens officiels</span>
+      </div>
+
+      <h1><span class="title-gradient">Réseaux</span> & plateformes</h1>
+      <p class="lead">
+        Remplace les “#” par tes liens. Mets ton @ pour que ce soit clair et pro.
+      </p>
+
+      <div class="actions">
+        <a class="btn warm" href="contact-devis.html#devis">Demander un devis</a>
+        <a class="btn primary" href="service-galerie.html#galerie">Voir la galerie</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>Mes liens</h2>
+        <small>cliquables</small>
+      </div>
+
+      <div class="grid-2">
+        <div class="tile social">
+          <div style="display:flex; gap:10px; align-items:center;">
+            <span class="icon" aria-hidden="true">📸</span>
+            <div>
+              <h3 style="margin:0;">Instagram</h3>
+              <p style="margin:0;">Reels, photos, stories.</p>
+              <div class="pill">@ton_compte</div>
+            </div>
+          </div>
+          <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
+        </div>
+
+        <div class="tile social">
+          <div style="display:flex; gap:10px; align-items:center;">
+            <span class="icon" aria-hidden="true">▶️</span>
+            <div>
+              <h3 style="margin:0;">YouTube</h3>
+              <p style="margin:0;">Showreel, projets.</p>
+              <div class="pill">Playlist</div>
+            </div>
+          </div>
+          <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
+        </div>
+
+        <div class="tile social">
+          <div style="display:flex; gap:10px; align-items:center;">
+            <span class="icon" aria-hidden="true">🎬</span>
+            <div>
+              <h3 style="margin:0;">TikTok</h3>
+              <p style="margin:0;">Formats courts.</p>
+              <div class="pill">Shorts</div>
+            </div>
+          </div>
+          <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
+        </div>
+
+        <div class="tile social">
+          <div style="display:flex; gap:10px; align-items:center;">
+            <span class="icon" aria-hidden="true">🎞️</span>
+            <div>
+              <h3 style="margin:0;">Vimeo</h3>
+              <p style="margin:0;">Portfolio vidéo (pro).</p>
+              <div class="pill">Vimeo</div>
+            </div>
+          </div>
+          <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
+        </div>
+      </div>
+
+      <div class="footer">© <span data-year></span> Thoma’s Film</div>
+    </section>
+  </main>
 </body>
 </html>
