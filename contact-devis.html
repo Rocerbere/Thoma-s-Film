@@ -1,37 +1,28 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
-
+  <meta name="color-scheme" content="dark light" />
+  <meta name="description" content="Contact & devis — Thoma’s Film." />
   <title>Thoma’s Film — Contact & Devis</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="app.js" defer></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
   <div class="bg-layer" aria-hidden="true"></div>
 
   <div class="logo-layer" aria-hidden="true">
-    <img class="logo-dark" src="logo-dark.png" alt="" />
-    <img class="logo-light" src="logo-light.png" alt="" />
+    <img class="logo-dark" src="./assets/logo-dark.png" alt="" />
+    <img class="logo-light" src="./assets/logo-light.png" alt="" />
   </div>
 
   <header>
     <div class="container topbar">
-      <a class="back" href="accueil.html">← Accueil</a>
-
-      <div class="brand">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span>
-          <span class="brand-title">Thoma’s Film</span>
-          <span class="brand-sub">Contact & Devis</span>
-        </span>
-      </div>
+      <a class="back" href="./accueil.html" aria-label="Retour accueil">← Accueil</a>
 
       <div class="right">
         <div class="toggles" aria-label="Options">
@@ -39,112 +30,88 @@
             <span class="label">Blanc</span>
             <span class="switch" aria-hidden="true"><span class="knob"></span></span>
           </button>
-
-          
         </div>
       </div>
     </div>
   </header>
 
   <main class="container page">
-    <section class="card hero">
-      <div style="display:flex; justify-content:center;">
-        <span class="kicker"><span class="dot"></span> Devis gratuit</span>
-      </div>
-
-      <h1><span class="title-gradient">Contact</span> & Devis</h1>
+    <section class="card">
+      <div class="kicker"><span class="dot" aria-hidden="true"></span>Contact</div>
+      <h1><span class="title-gradient">Demande de devis</span></h1>
       <p class="lead">
-        Donne un maximum d’infos (service, deadline, style, plateforme). Le formulaire prépare un email prêt à envoyer.
+        Décris ton projet, je te réponds avec une proposition claire (délais + prix + livrables).
       </p>
 
       <div class="actions">
-        <a class="btn warm" href="#devis">Aller au devis</a>
-        <a class="btn primary" href="mailto:thomaspawlowski17@gmail.com">Envoyer un email</a>
-      </div>
-
-      <div class="stats">
-        <span class="stat">✅ Devis gratuit</span>
-        <span class="stat">⚡ Réponse 24–48h</span>
-        <span class="stat">📦 Livraisons multi-formats</span>
+        <a class="btn primary" href="./service-galerie.html">Voir les services</a>
+        <a class="btn cool" href="./reseaux.html">Réseaux</a>
       </div>
     </section>
 
-    <section class="card" id="devis">
+    <section id="devis" class="card">
       <div class="section-title">
-        <h2>Devis</h2>
-        <small>formulaire</small>
+        <h2>Formulaire</h2>
+        <small>mailto</small>
       </div>
 
-      <div class="grid-2">
-        <div class="tile">
-          <h3>Infos</h3>
-          <p>
-            Email : <a href="mailto:thomaspawlowski17@gmail.com">thomaspawlowski17@gmail.com</a><br/>
-            Zone : Marseille & alentours (déplacement possible)
-          </p>
-
-          <div class="actions" style="justify-content:flex-start;">
-            <a class="btn" href="service-galerie.html">Voir services</a>
-            <a class="btn" href="reseaux.html">Réseaux</a>
+      <form class="form" data-mailto="thomaspawlowski17@gmail.com">
+        <div class="grid-2">
+          <div>
+            <label for="lastname">Nom</label>
+            <input id="lastname" name="lastname" placeholder="Nom" autocomplete="family-name" />
+          </div>
+          <div>
+            <label for="firstname">Prénom</label>
+            <input id="firstname" name="firstname" placeholder="Prénom" autocomplete="given-name" />
           </div>
         </div>
 
-        <div class="tile">
-          <form class="form" data-mailto="thomaspawlowski17@gmail.com">
-            <div>
-              <label for="lastname">Nom</label>
-              <input id="lastname" name="lastname" required placeholder="Ton nom" />
-            </div>
-
-            <div>
-              <label for="firstname">Prénom</label>
-              <input id="firstname" name="firstname" required placeholder="Ton prénom" />
-            </div>
-
-            <div>
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" required placeholder="tonmail@exemple.com" />
-            </div>
-
-            <div>
-              <label for="phone">Téléphone</label>
-              <input id="phone" name="phone" placeholder="06..." />
-            </div>
-
-            <div>
-              <label for="service">Service</label>
-              <select id="service" name="service" required>
-                <option value="">Choisir…</option>
-                <option>Photographie</option>
-                <option>Vidéo</option>
-                <option>Drone</option>
-                <option>Montage & Color</option>
-                <option>Autre</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="deadline">Deadline</label>
-              <input id="deadline" name="deadline" placeholder="Ex: 15/02" />
-            </div>
-
-            <div>
-              <label for="budget">Budget (optionnel)</label>
-              <input id="budget" name="budget" placeholder="Ex: 300€ / 800€ / …" />
-            </div>
-
-            <div>
-              <label for="message">Message</label>
-              <textarea id="message" name="message" required placeholder="Décris ton besoin (durée, style, références, plateforme…)"></textarea>
-            </div>
-
-            <button class="btn warm" type="submit">Préparer l’email</button>
-          </form>
+        <div class="grid-2">
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="email@exemple.com" autocomplete="email" />
+          </div>
+          <div>
+            <label for="phone">Téléphone</label>
+            <input id="phone" name="phone" placeholder="06…" autocomplete="tel" />
+          </div>
         </div>
-      </div>
 
-      <div class="footer">© <span data-year></span> Thoma’s Film</div>
+        <div class="grid-2">
+          <div>
+            <label for="service">Service</label>
+            <select id="service" name="service">
+              <option value="">Choisir</option>
+              <option>Photo</option>
+              <option>Vidéo</option>
+              <option>Drone</option>
+              <option>Montage & Color</option>
+            </select>
+          </div>
+          <div>
+            <label for="deadline">Deadline</label>
+            <input id="deadline" name="deadline" placeholder="ex: 15/03" />
+          </div>
+        </div>
+
+        <div>
+          <label for="budget">Budget (optionnel)</label>
+          <input id="budget" name="budget" placeholder="ex: 300€" />
+        </div>
+
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Brief, références, lieu, durée, livrables…"></textarea>
+        </div>
+
+        <button class="btn warm" type="submit">Envoyer la demande</button>
+
+        <div class="footer">© <span data-year></span> Thoma’s Film</div>
+      </form>
     </section>
   </main>
+
+  <script src="./app.js" defer></script>
 </body>
 </html>
