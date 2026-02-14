@@ -1,37 +1,28 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="description" content="Réseaux — Thoma’s Film." />
+  <title>Thoma’s Film — Réseaux</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
-
-  <title>Thoma’s Film — Services & Galerie</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="app.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
   <div class="bg-layer" aria-hidden="true"></div>
 
   <div class="logo-layer" aria-hidden="true">
-    <img class="logo-dark" src="logo-dark.png" alt="" />
-    <img class="logo-light" src="logo-light.png" alt="" />
+    <img class="logo-dark" src="./assets/logo-dark.png" alt="" />
+    <img class="logo-light" src="./assets/logo-light.png" alt="" />
   </div>
 
   <header>
     <div class="container topbar">
-      <a class="back" href="accueil.html">← Accueil</a>
-
-      <div class="brand" aria-label="Thoma’s Film">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span>
-          <span class="brand-title">Thoma’s Film</span>
-          <span class="brand-sub">Services & Galerie</span>
-        </span>
-      </div>
+      <a class="back" href="./accueil.html" aria-label="Retour accueil">← Accueil</a>
 
       <div class="right">
         <div class="toggles" aria-label="Options">
@@ -39,145 +30,81 @@
             <span class="label">Blanc</span>
             <span class="switch" aria-hidden="true"><span class="knob"></span></span>
           </button>
-
-        
         </div>
       </div>
     </div>
   </header>
 
   <main class="container page">
-    <section class="card hero">
-      <div style="display:flex; justify-content:center;">
-        <span class="kicker"><span class="dot"></span> Prestations + liens vers tes projets</span>
-      </div>
-
-      <h1><span class="title-gradient">Services</span> & Galerie</h1>
+    <section class="card">
+      <div class="kicker"><span class="dot" aria-hidden="true"></span>Réseaux</div>
+      <h1><span class="title-gradient">Me retrouver en ligne</span></h1>
       <p class="lead">
-        Des offres claires + une galerie avec vignettes (remplace les liens “#” par tes URL : Drive, YouTube, Vimeo…).
+        Mes plateformes pour découvrir mon travail et me contacter rapidement.
       </p>
 
       <div class="actions">
-        <a class="btn warm" href="contact-devis.html#devis">Demander un devis</a>
-        <a class="btn primary" href="#galerie">Aller à la galerie</a>
+        <a class="btn primary" href="./service-galerie.html">Services</a>
+        <a class="btn warm" href="./contact-devis.html#devis">Demander un devis</a>
       </div>
     </section>
 
-    <section class="card">
+    <section class="card" aria-label="Cartes réseaux">
       <div class="section-title">
-        <h2>Services disponibles</h2>
-        <small>packs possibles</small>
+        <h2>Plateformes</h2>
+        <small>liens</small>
       </div>
 
       <div class="grid-2">
-        <div class="tile">
-          <h3>📸 Photographie</h3>
-          <p>Portrait • produit • événementiel • retouches</p>
-          <ul>
-            <li>Shooting + sélection</li>
-            <li>Retouches propres</li>
-            <li>Livraison web/print</li>
-          </ul>
-          <div class="actions" style="justify-content:flex-start;">
-            <a class="btn warm" href="contact-devis.html#devis">Devis</a>
-          </div>
-        </div>
-
-        <div class="tile">
-          <h3>🎥 Vidéo</h3>
-          <p>Captation + montage • reels • interviews • aftermovies</p>
-          <ul>
-            <li>Montage + titrage</li>
-            <li>Exports multi-formats</li>
-            <li>Option sous-titres</li>
-          </ul>
-          <div class="actions" style="justify-content:flex-start;">
-            <a class="btn warm" href="contact-devis.html#devis">Devis</a>
-          </div>
-        </div>
-
-        <div class="tile">
-          <h3>🚁 Drone</h3>
-          <p>Plans aériens • establishing shots • best-of</p>
-          <ul>
-            <li>Plans aériens propres</li>
-            <li>Intégration au montage</li>
-            <li>Version courte/longue</li>
-          </ul>
-          <div class="actions" style="justify-content:flex-start;">
-            <a class="btn warm" href="contact-devis.html#devis">Devis</a>
-          </div>
-        </div>
-
-        <div class="tile">
-          <h3>🎬 Montage & Color</h3>
-          <p>Montage • rythme • colorimétrie • exports</p>
-          <ul>
-            <li>Storytelling + rythme</li>
-            <li>Colorimétrie (look)</li>
-            <li>Livraison optimisée RS</li>
-          </ul>
-          <div class="actions" style="justify-content:flex-start;">
-            <a class="btn warm" href="contact-devis.html#devis">Devis</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="card" id="galerie">
-      <div class="section-title">
-        <h2>Galerie</h2>
-        <small>remplace les liens</small>
-      </div>
-
-      <div class="grid-2">
-        <div class="tile project">
-          <div class="thumb photo" aria-hidden="true"></div>
-          <div>
-            <h3>Album Photos</h3>
-            <p>Drive / Portfolio — ajoute tes meilleures photos.</p>
-            <div class="actions" style="justify-content:flex-start;">
-              <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
+        <a class="tile" href="#" aria-label="Instagram">
+          <div class="social">
+            <div class="icon" aria-hidden="true">📷</div>
+            <div>
+              <h3>Instagram</h3>
+              <p>Reels, photos, stories, backstage.</p>
+              <div class="pill">@ton_compte</div>
             </div>
           </div>
-        </div>
+        </a>
 
-        <div class="tile project">
-          <div class="thumb video" aria-hidden="true"></div>
-          <div>
-            <h3>Playlist Vidéos</h3>
-            <p>YouTube / Vimeo — showreel + projets.</p>
-            <div class="actions" style="justify-content:flex-start;">
-              <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
+        <a class="tile" href="#" aria-label="YouTube">
+          <div class="social">
+            <div class="icon" aria-hidden="true">▶️</div>
+            <div>
+              <h3>YouTube</h3>
+              <p>Vidéos longues, showreel, projets.</p>
+              <div class="pill">Chaîne</div>
             </div>
           </div>
-        </div>
+        </a>
 
-        <div class="tile project">
-          <div class="thumb drone" aria-hidden="true"></div>
-          <div>
-            <h3>Best-of Drone</h3>
-            <p>Une sélection de plans aériens.</p>
-            <div class="actions" style="justify-content:flex-start;">
-              <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
+        <a class="tile" href="#" aria-label="TikTok">
+          <div class="social">
+            <div class="icon" aria-hidden="true">🎵</div>
+            <div>
+              <h3>TikTok</h3>
+              <p>Formats courts & montage dynamique.</p>
+              <div class="pill">@ton_compte</div>
             </div>
           </div>
-        </div>
+        </a>
 
-        <div class="tile project">
-          <div class="thumb montage" aria-hidden="true"></div>
-          <div>
-            <h3>Avant / Après</h3>
-            <p>Montage + colorimétrie (preuve de ton rendu).</p>
-            <div class="actions" style="justify-content:flex-start;">
-              <a class="btn primary" href="#" target="_blank" rel="noopener">Ouvrir</a>
+        <a class="tile" href="#" aria-label="Mail">
+          <div class="social">
+            <div class="icon" aria-hidden="true">✉️</div>
+            <div>
+              <h3>Email</h3>
+              <p>Contact pro / demandes de devis.</p>
+              <div class="pill">tonmail@exemple.com</div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
 
       <div class="footer">© <span data-year></span> Thoma’s Film</div>
     </section>
   </main>
+
+  <script src="./app.js" defer></script>
 </body>
 </html>
