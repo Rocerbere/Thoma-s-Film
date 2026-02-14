@@ -1,34 +1,33 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
-
+  <meta name="color-scheme" content="dark light" />
+  <meta name="description" content="Portfolio & services — Thoma’s Film (photo, vidéo, drone, montage)." />
   <title>Thoma’s Film — Accueil</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="app.js" defer></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
   <div class="bg-layer" aria-hidden="true"></div>
 
   <div class="logo-layer" aria-hidden="true">
-    <img class="logo-dark" src="logo-dark.png" alt="" />
-    <img class="logo-light" src="logo-light.png" alt="" />
+    <img class="logo-dark" src="./assets/logo-dark.png" alt="" />
+    <img class="logo-light" src="./assets/logo-light.png" alt="" />
   </div>
 
   <header>
     <div class="container topbar">
       <div class="brand" aria-label="Thoma’s Film">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span>
-          <span class="brand-title">Thoma’s Film</span>
-          <span class="brand-sub">Vidéo • Photo • Drone • Montage</span>
-        </span>
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div>
+          <div class="brand-title">Thoma’s Film</div>
+          <div class="brand-sub">Photo • Vidéo • Drone • Montage</div>
+        </div>
       </div>
 
       <div class="right">
@@ -37,36 +36,34 @@
             <span class="label">Blanc</span>
             <span class="switch" aria-hidden="true"><span class="knob"></span></span>
           </button>
-
-
         </div>
       </div>
     </div>
   </header>
 
   <main class="container page">
-    <section class="card hero">
-      <div style="display:flex; justify-content:center;">
-        <span class="kicker"><span class="dot"></span> Portfolio créatif • contenu pro & réseaux</span>
-      </div>
+    <section class="card">
+      <div class="kicker"><span class="dot" aria-hidden="true"></span>Création de contenus premium</div>
 
-      <h1><span class="title-gradient">Monteur vidéo</span> • Vidéaste • Drone • Photo</h1>
+      <h1><span class="title-gradient">Votre image, en version cinéma.</span></h1>
 
       <p class="lead">
-        Basé à Marseille — je crée des vidéos et visuels impactants : reels, corporate, interviews, événementiel,
-        avec un rendu clean (montage + titrage + colorimétrie).
+        Je réalise vos photos, vidéos, plans drone et montages avec une esthétique moderne, soignée et cohérente.
+        Objectif : apporter à votre projet une vraie identité visuelle.
       </p>
 
-      <div class="actions">
-        <a class="btn primary" href="service-galerie.html#galerie">Voir la galerie</a>
-        <a class="btn warm" href="contact-devis.html#devis">Demander un devis</a>
-        <a class="btn" href="reseaux.html">Réseaux</a>
+      <div class="actions-frame">
+        <div class="actions">
+          <a class="btn pink" href="./service-galerie.html">Voir les services</a>
+          <a class="btn blue pulse" href="./contact-devis.html#devis">Demander un devis</a>
+          <a class="btn purple" href="./reseaux.html">Réseaux</a>
+        </div>
       </div>
 
-      <div class="stats" aria-label="Infos rapides">
-        <span class="stat">⚡ Réponse 24–48h</span>
-        <span class="stat">🎞️ Livraisons multi-formats</span>
-        <span class="stat">📍 Marseille + déplacement</span>
+      <div class="stats" aria-label="Indicateurs">
+        <div class="stat">⚡ Délai rapide</div>
+        <div class="stat">🎬 Style ciné</div>
+        <div class="stat">📦 Livraison optimisée</div>
       </div>
     </section>
 
@@ -96,7 +93,7 @@
         </div>
 
         <div class="tile">
-          <h3>🎬 Montage & Color</h3>
+          <h3>🎞️ Montage &amp; Color</h3>
           <p>Rythme, titrage, sous-titres, colorimétrie.</p>
           <div class="pill">Look • Export RS</div>
         </div>
@@ -105,5 +102,7 @@
       <div class="footer">© <span data-year></span> Thoma’s Film</div>
     </section>
   </main>
+
+  <script src="./app.js" defer></script>
 </body>
 </html>
