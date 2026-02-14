@@ -2,6 +2,7 @@
    THOMA'S FILM — style.css (OSHI NO KO IDOL NEON WOW)
    Palette : Magenta / Violet / Cyan (idol lights)
    Effets : néon + halo + sparkles + titre animé + boutons glow
+   ✅ compatible theme toggle (app.js)
    ========================================================== */
 
 /* -----------------------------
@@ -113,7 +114,7 @@ button{ font: inherit; }
 .bg-layer{
   position: fixed;
   inset: -700px; /* anti seam */
-  z-index: -999;
+  z-index: -3;
   pointer-events: none;
 
   background-color: var(--bg);
@@ -179,7 +180,7 @@ button{ font: inherit; }
 .logo-layer{
   position: fixed;
   inset: -120px;
-  z-index: -998;
+  z-index: -2;
   pointer-events: none;
 }
 
@@ -204,22 +205,19 @@ button{ font: inherit; }
 }
 
 /* visible dark */
-.logo-layer .logo-dark{ opacity: .105; }
+.logo-layer .logo-dark{ opacity: .14; }
 
 /* visible light */
 html[data-theme="light"] .logo-layer .logo-dark{ opacity: 0; }
 html[data-theme="light"] .logo-layer .logo-light{
-  opacity: .095;
+  opacity: .12;
   filter: drop-shadow(0 18px 45px rgba(0,0,0,.12));
 }
 
-/* -----------------------------
-   6) CONTAINER (desktop-only)
------------------------------- */
-.container{
-  width: min(var(--container), calc(100% - 32px));
-  margin: 0 auto;
-}
+/* fallback si un fichier logo manque */
+html.no-logo-light[data-theme="light"] .logo-layer .logo-dark{ opacity: .10; }
+html.no-logo-dark:not([data-theme="light"]) .logo-layer .logo-light{ opacity: .12; }
+
 
 /* -----------------------------
    7) HEADER
@@ -373,6 +371,14 @@ select:focus-visible{
 section[id]{ scroll-margin-top: calc(var(--header-h) + 18px); }
 
 /* -----------------------------
+   6) CONTAINER
+------------------------------ */
+.container{
+  width: min(var(--container), calc(100% - 32px));
+  margin: 0 auto;
+}
+
+/* -----------------------------
    8) PAGE / CARDS (NEON GLASS)
 ------------------------------ */
 .page{
@@ -449,7 +455,6 @@ h1{
   text-align:center;
 }
 
-/* animated neon gradient + glow text */
 .title-gradient{
   background: linear-gradient(90deg, var(--pink), var(--violet), var(--cyan), var(--blue), var(--pink));
   background-size: 260% 100%;
@@ -532,7 +537,6 @@ h1{
 }
 .btn:active{ transform: translateY(1px); }
 
-/* primary = Oshi neon gradient */
 .btn.primary{
   border-color: rgba(255,42,161,.45);
   background: linear-gradient(135deg, rgba(255,42,161,.36), rgba(123,44,255,.20));
@@ -541,21 +545,18 @@ h1{
     0 0 28px rgba(123,44,255,.10);
 }
 
-/* secondary (cool) = cyan spotlight */
 .btn.cool{
   border-color: rgba(45,226,255,.52);
   background: linear-gradient(135deg, rgba(45,226,255,.26), rgba(75,123,255,.16));
   box-shadow: 0 0 26px rgba(45,226,255,.12);
 }
 
-/* warm = CTA (utilisé pour devis) */
 .btn.warm{
   border-color: rgba(45,226,255,.52);
   background: linear-gradient(135deg, rgba(45,226,255,.28), rgba(75,123,255,.18));
   box-shadow: 0 0 26px rgba(45,226,255,.12);
 }
 
-/* neon aura */
 .btn.primary::after,
 .btn.cool::after,
 .btn.warm::after{
@@ -573,7 +574,6 @@ h1{
 .btn.cool:hover::after,
 .btn.warm:hover::after{ opacity: .55; }
 
-/* shine pass (wow) */
 .btn.primary::before,
 .btn.cool::before,
 .btn.warm::before{
@@ -756,8 +756,9 @@ input:focus, textarea:focus, select:focus{
 }
 
 /* -----------------------------
-   16) RESPONSIVE (supprimé : desktop-only)
+   16) RESPONSIVE (désactivé : desktop-only)
 ------------------------------ */
+/* (mobile rules removed) */
 
 /* -----------------------------
    17) REDUCE MOTION
@@ -919,10 +920,6 @@ input:focus, textarea:focus, select:focus{
 .actions-frame .btn.pink{
   border-color: rgba(255,42,161,.50);
   background: linear-gradient(135deg, rgba(255,42,161,.40), rgba(123,44,255,.18));
-  box-shadow:
-    0 0 22px rgba(255,42,161,.10),
-    0 18px 60px rgba(0,0,0,.18),
-    inset 0 0 0 1px rgba(0,0,0,.06);
 }
 .actions-frame .btn.pink::after{
   background: linear-gradient(90deg, rgba(255,42,161,.68), rgba(123,44,255,.56), rgba(45,226,255,.38));
@@ -931,10 +928,6 @@ input:focus, textarea:focus, select:focus{
 .actions-frame .btn.blue{
   border-color: rgba(45,226,255,.58);
   background: linear-gradient(135deg, rgba(45,226,255,.30), rgba(75,123,255,.20));
-  box-shadow:
-    0 0 22px rgba(45,226,255,.10),
-    0 18px 60px rgba(0,0,0,.18),
-    inset 0 0 0 1px rgba(0,0,0,.06);
 }
 .actions-frame .btn.blue::after{
   background: linear-gradient(90deg, rgba(45,226,255,.66), rgba(75,123,255,.58), rgba(255,42,161,.34));
@@ -943,10 +936,6 @@ input:focus, textarea:focus, select:focus{
 .actions-frame .btn.purple{
   border-color: rgba(123,44,255,.56);
   background: linear-gradient(135deg, rgba(123,44,255,.34), rgba(255,42,161,.18));
-  box-shadow:
-    0 0 22px rgba(123,44,255,.10),
-    0 18px 60px rgba(0,0,0,.18),
-    inset 0 0 0 1px rgba(0,0,0,.06);
 }
 .actions-frame .btn.purple::after{
   background: linear-gradient(90deg, rgba(123,44,255,.68), rgba(255,42,161,.56), rgba(45,226,255,.36));
@@ -962,57 +951,16 @@ input:focus, textarea:focus, select:focus{
 .actions-frame .btn.purple.pulse{animation-name: pulseGlowPurple;}
 
 @keyframes pulseGlowPink{
-  0%,100%{
-    transform: translateY(0);
-    box-shadow:
-      0 0 22px rgba(255,42,161,.10),
-      0 18px 60px rgba(0,0,0,.18),
-      inset 0 0 0 1px rgba(0,0,0,.06);
-  }
-  50%{
-    transform: translateY(-1px);
-    box-shadow:
-      0 0 42px rgba(255,42,161,.24),
-      0 0 22px rgba(123,44,255,.14),
-      0 22px 80px rgba(0,0,0,.22),
-      inset 0 0 0 1px rgba(0,0,0,.06);
-  }
+  0%,100%{ transform: translateY(0); }
+  50%{ transform: translateY(-1px); }
 }
-
 @keyframes pulseGlowBlue{
-  0%,100%{
-    transform: translateY(0);
-    box-shadow:
-      0 0 22px rgba(45,226,255,.10),
-      0 18px 60px rgba(0,0,0,.18),
-      inset 0 0 0 1px rgba(0,0,0,.06);
-  }
-  50%{
-    transform: translateY(-1px);
-    box-shadow:
-      0 0 46px rgba(45,226,255,.24),
-      0 0 18px rgba(75,123,255,.14),
-      0 22px 80px rgba(0,0,0,.22),
-      inset 0 0 0 1px rgba(0,0,0,.06);
-  }
+  0%,100%{ transform: translateY(0); }
+  50%{ transform: translateY(-1px); }
 }
-
 @keyframes pulseGlowPurple{
-  0%,100%{
-    transform: translateY(0);
-    box-shadow:
-      0 0 22px rgba(123,44,255,.10),
-      0 18px 60px rgba(0,0,0,.18),
-      inset 0 0 0 1px rgba(0,0,0,.06);
-  }
-  50%{
-    transform: translateY(-1px);
-    box-shadow:
-      0 0 46px rgba(123,44,255,.24),
-      0 0 18px rgba(255,42,161,.14),
-      0 22px 80px rgba(0,0,0,.22),
-      inset 0 0 0 1px rgba(0,0,0,.06);
-  }
+  0%,100%{ transform: translateY(0); }
+  50%{ transform: translateY(-1px); }
 }
 
 /* ==========================================================
