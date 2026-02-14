@@ -2,27 +2,35 @@
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="utf-8" />
-  <meta name="color-scheme" content="dark light" />
-  <meta name="description" content="Réseaux — Thoma’s Film." />
-  <title>Thoma’s Film — Réseaux</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <title>Thoma’s Film — Réseaux</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
 </head>
 
 <body>
   <div class="bg-layer" aria-hidden="true"></div>
 
   <div class="logo-layer" aria-hidden="true">
-    <img class="logo-dark" src="./assets/logo-dark.png" alt="" />
-    <img class="logo-light" src="./assets/logo-light.png" alt="" />
+    <img class="logo-dark" src="./logo-dark.png" loading="eager" decoding="async" alt="" />
+    <img class="logo-light" src="./logo-light.png" loading="eager" decoding="async" alt="" />
   </div>
 
   <header>
     <div class="container topbar">
-      <a class="back" href="./accueil.html" aria-label="Retour accueil">← Accueil</a>
+      <a class="back" href="accueil.html">← Accueil</a>
+
+      <div class="brand" aria-label="Thoma’s Film">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          <span class="brand-title">Thoma’s Film</span>
+          <span class="brand-sub">Réseaux</span>
+        </span>
+      </div>
 
       <div class="right">
         <div class="toggles" aria-label="Options">
@@ -36,27 +44,31 @@
   </header>
 
   <main class="container page">
-    <section class="card">
-      <div class="kicker"><span class="dot" aria-hidden="true"></span>Réseaux</div>
-      <h1><span class="title-gradient">Me retrouver en ligne</span></h1>
+    <section class="card hero">
+      <div style="display:flex; justify-content:center;">
+        <span class="kicker"><span class="dot"></span> Plateformes • Contact</span>
+      </div>
+
+      <h1><span class="title-gradient">Réseaux</span></h1>
+
       <p class="lead">
-        Mes plateformes pour découvrir mon travail et me contacter rapidement.
+        Retrouve mes contenus et contacte-moi facilement via mes réseaux.
       </p>
 
       <div class="actions">
-        <a class="btn primary" href="./service-galerie.html">Services</a>
-        <a class="btn warm" href="./contact-devis.html#devis">Demander un devis</a>
+        <a class="btn primary" href="service-galerie.html">Services</a>
+        <a class="btn warm" href="contact-devis.html#devis">Demander un devis</a>
       </div>
     </section>
 
-    <section class="card" aria-label="Cartes réseaux">
+    <section class="card">
       <div class="section-title">
-        <h2>Plateformes</h2>
-        <small>liens</small>
+        <h2>Liens</h2>
+        <small>à compléter</small>
       </div>
 
       <div class="grid-2">
-        <a class="tile" href="#" aria-label="Instagram">
+        <a class="tile" href="#" target="_blank" rel="noreferrer">
           <div class="social">
             <div class="icon" aria-hidden="true">📷</div>
             <div>
@@ -67,7 +79,7 @@
           </div>
         </a>
 
-        <a class="tile" href="#" aria-label="YouTube">
+        <a class="tile" href="#" target="_blank" rel="noreferrer">
           <div class="social">
             <div class="icon" aria-hidden="true">▶️</div>
             <div>
@@ -78,7 +90,7 @@
           </div>
         </a>
 
-        <a class="tile" href="#" aria-label="TikTok">
+        <a class="tile" href="#" target="_blank" rel="noreferrer">
           <div class="social">
             <div class="icon" aria-hidden="true">🎵</div>
             <div>
@@ -89,13 +101,13 @@
           </div>
         </a>
 
-        <a class="tile" href="#" aria-label="Mail">
+        <a class="tile" href="contact-devis.html#devis">
           <div class="social">
             <div class="icon" aria-hidden="true">✉️</div>
             <div>
-              <h3>Email</h3>
-              <p>Contact pro / demandes de devis.</p>
-              <div class="pill">tonmail@exemple.com</div>
+              <h3>Contact</h3>
+              <p>Mail pro / demandes de devis.</p>
+              <div class="pill">Formulaire</div>
             </div>
           </div>
         </a>
@@ -104,7 +116,5 @@
       <div class="footer">© <span data-year></span> Thoma’s Film</div>
     </section>
   </main>
-
-  <script src="./app.js" defer></script>
 </body>
 </html>
