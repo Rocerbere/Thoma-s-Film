@@ -1,42 +1,37 @@
 (() => {
-  const KEY_THEME = "tf_theme";   // "dark" | "light"
-  const KEY_DEVICE = "tf_device"; // "desktop" | "mobile"
+  const KEY_THEME = "tf_theme";
+  const LEGACY_DEVICE_KEY = "tf_device";
 
-  function applySettings() {
+  // Desktop-only: on purge l'ancien mode "device/mobile" s'il traîne
+  try { localStorage.removeItem(LEGACY_DEVICE_KEY); } catch {}
+  document.documentElement.removeAttribute("data-device");
+
+  function applyTheme() {
     const theme = localStorage.getItem(KEY_THEME) || "dark";
-    const device = localStorage.getItem(KEY_DEVICE) || "desktop";
-
     document.documentElement.setAttribute("data-theme", theme);
-    document.documentElement.setAttribute("data-device", device);
 
     const themeToggle = document.querySelector('[data-toggle="theme"]');
-    const deviceToggle = document.querySelector('[data-toggle="device"]');
-
-    if (themeToggle) themeToggle.setAttribute("data-on", theme === "light" ? "true" : "false");
-    if (deviceToggle) deviceToggle.setAttribute("data-on", device === "mobile" ? "true" : "false");
+    if (themeToggle) {
+      const on = theme === "light";
+      themeToggle.setAttribute("data-on", on ? "true" : "false");
+      themeToggle.setAttribute("aria-pressed", on ? "true" : "false");
+      const label = themeToggle.querySelector(".label");
+      if (label) label.textContent = on ? "Blanc" : "Noir";
+    }
   }
 
-  function toggleTheme(){
+  function toggleTheme() {
     const current = document.documentElement.getAttribute("data-theme") || "dark";
     localStorage.setItem(KEY_THEME, current === "dark" ? "light" : "dark");
-    applySettings();
-  }
-
-  function toggleDevice(){
-    const current = document.documentElement.getAttribute("data-device") || "desktop";
-    localStorage.setItem(KEY_DEVICE, current === "desktop" ? "mobile" : "desktop");
-    applySettings();
+    applyTheme();
   }
 
   // init
-  applySettings();
+  applyTheme();
 
-  // events
+  // toggle theme
   const themeBtn = document.querySelector('[data-toggle="theme"]');
-  if(themeBtn) themeBtn.addEventListener("click", toggleTheme);
-
-  const deviceBtn = document.querySelector('[data-toggle="device"]');
-  if(deviceBtn) deviceBtn.addEventListener("click", toggleDevice);
+  if (themeBtn) themeBtn.addEventListener("click", toggleTheme);
 
   // year
   document.querySelectorAll("[data-year]").forEach(el => {
