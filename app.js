@@ -2,9 +2,21 @@
   const KEY_THEME = "tf_theme";
   const LEGACY_DEVICE_KEY = "tf_device";
 
-  // Desktop-only: on purge l'ancien mode "device/mobile" s'il traîne
+  // Desktop-only: purge ancien mode "device/mobile" s'il traîne
   try { localStorage.removeItem(LEGACY_DEVICE_KEY); } catch {}
   document.documentElement.removeAttribute("data-device");
+
+  // Logos: si un fichier manque, on active un fallback CSS
+  const logoDark = document.querySelector(".logo-layer .logo-dark");
+  const logoLight = document.querySelector(".logo-layer .logo-light");
+
+  logoDark?.addEventListener("error", () => {
+    document.documentElement.classList.add("no-logo-dark");
+  });
+
+  logoLight?.addEventListener("error", () => {
+    document.documentElement.classList.add("no-logo-light");
+  });
 
   function applyTheme() {
     const theme = localStorage.getItem(KEY_THEME) || "dark";
