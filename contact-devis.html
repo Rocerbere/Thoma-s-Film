@@ -2,27 +2,35 @@
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="utf-8" />
-  <meta name="color-scheme" content="dark light" />
-  <meta name="description" content="Contact & devis — Thoma’s Film." />
-  <title>Thoma’s Film — Contact & Devis</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <title>Thoma’s Film — Contact & Devis</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
 </head>
 
 <body>
   <div class="bg-layer" aria-hidden="true"></div>
 
   <div class="logo-layer" aria-hidden="true">
-    <img class="logo-dark" src="./assets/logo-dark.png" alt="" />
-    <img class="logo-light" src="./assets/logo-light.png" alt="" />
+    <img class="logo-dark" src="./logo-dark.png" loading="eager" decoding="async" alt="" />
+    <img class="logo-light" src="./logo-light.png" loading="eager" decoding="async" alt="" />
   </div>
 
   <header>
     <div class="container topbar">
-      <a class="back" href="./accueil.html" aria-label="Retour accueil">← Accueil</a>
+      <a class="back" href="accueil.html">← Accueil</a>
+
+      <div class="brand" aria-label="Thoma’s Film">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          <span class="brand-title">Thoma’s Film</span>
+          <span class="brand-sub">Contact & Devis</span>
+        </span>
+      </div>
 
       <div class="right">
         <div class="toggles" aria-label="Options">
@@ -36,20 +44,24 @@
   </header>
 
   <main class="container page">
-    <section class="card">
-      <div class="kicker"><span class="dot" aria-hidden="true"></span>Contact</div>
+    <section class="card hero">
+      <div style="display:flex; justify-content:center;">
+        <span class="kicker"><span class="dot"></span> Contact • Brief • Devis</span>
+      </div>
+
       <h1><span class="title-gradient">Demande de devis</span></h1>
+
       <p class="lead">
-        Décris ton projet, je te réponds avec une proposition claire (délais + prix + livrables).
+        Décris ton projet (format, durée, deadline, références). Je te réponds avec une proposition claire.
       </p>
 
       <div class="actions">
-        <a class="btn primary" href="./service-galerie.html">Voir les services</a>
-        <a class="btn cool" href="./reseaux.html">Réseaux</a>
+        <a class="btn primary" href="service-galerie.html">Services</a>
+        <a class="btn cool" href="reseaux.html">Réseaux</a>
       </div>
     </section>
 
-    <section id="devis" class="card">
+    <section class="card" id="devis">
       <div class="section-title">
         <h2>Formulaire</h2>
         <small>mailto</small>
@@ -58,30 +70,30 @@
       <form class="form" data-mailto="thomaspawlowski17@gmail.com">
         <div class="grid-2">
           <div>
-            <label for="lastname">Nom</label>
-            <input id="lastname" name="lastname" placeholder="Nom" autocomplete="family-name" />
+            <label>Nom</label>
+            <input name="lastname" placeholder="Nom" />
           </div>
           <div>
-            <label for="firstname">Prénom</label>
-            <input id="firstname" name="firstname" placeholder="Prénom" autocomplete="given-name" />
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <div>
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="email@exemple.com" autocomplete="email" />
-          </div>
-          <div>
-            <label for="phone">Téléphone</label>
-            <input id="phone" name="phone" placeholder="06…" autocomplete="tel" />
+            <label>Prénom</label>
+            <input name="firstname" placeholder="Prénom" />
           </div>
         </div>
 
         <div class="grid-2">
           <div>
-            <label for="service">Service</label>
-            <select id="service" name="service">
+            <label>Email</label>
+            <input name="email" type="email" placeholder="email@exemple.com" />
+          </div>
+          <div>
+            <label>Téléphone</label>
+            <input name="phone" placeholder="06…" />
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <label>Service</label>
+            <select name="service">
               <option value="">Choisir</option>
               <option>Photo</option>
               <option>Vidéo</option>
@@ -90,19 +102,19 @@
             </select>
           </div>
           <div>
-            <label for="deadline">Deadline</label>
-            <input id="deadline" name="deadline" placeholder="ex: 15/03" />
+            <label>Deadline</label>
+            <input name="deadline" placeholder="ex: 15/03" />
           </div>
         </div>
 
         <div>
-          <label for="budget">Budget (optionnel)</label>
-          <input id="budget" name="budget" placeholder="ex: 300€" />
+          <label>Budget (optionnel)</label>
+          <input name="budget" placeholder="ex: 300€" />
         </div>
 
         <div>
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Brief, références, lieu, durée, livrables…"></textarea>
+          <label>Message</label>
+          <textarea name="message" placeholder="Brief, références, lieu, durée, livrables…"></textarea>
         </div>
 
         <button class="btn warm" type="submit">Envoyer la demande</button>
@@ -111,7 +123,5 @@
       </form>
     </section>
   </main>
-
-  <script src="./app.js" defer></script>
 </body>
 </html>
