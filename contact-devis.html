@@ -2,6 +2,8 @@
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,27 +23,30 @@
   </div>
 
   <header>
-    <div class="container topbar">
+  <div class="container topbar">
+    <div class="left">
       <a class="back" href="accueil.html">← Accueil</a>
+    </div>
 
-      <div class="brand" aria-label="Thoma’s Film">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span>
-          <span class="brand-title">Thoma’s Film</span>
-          <span class="brand-sub">Contact & Devis</span>
-        </span>
-      </div>
+    <div class="brand" aria-label="Thoma’s Film">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>
+        <span class="brand-title">Thoma’s Film</span>
+        <span class="brand-sub">Contact et devis</span>
+      </span>
+    </div>
 
-      <div class="right">
-        <div class="toggles" aria-label="Options">
-          <button class="toggle" type="button" data-toggle="theme" data-on="false" aria-label="Basculer blanc/noir">
-            <span class="label">Blanc</span>
-            <span class="switch" aria-hidden="true"><span class="knob"></span></span>
-          </button>
-        </div>
+    <div class="right">
+      <div class="toggles" aria-label="Options">
+        <button class="toggle" type="button" data-toggle="theme" data-on="false" aria-label="Basculer blanc/noir">
+          <span class="label">Blanc</span>
+          <span class="switch" aria-hidden="true"><span class="knob"></span></span>
+        </button>
       </div>
     </div>
-  </header>
+  </div>
+</header>
+
 
   <main class="container page">
     <section class="card hero">
@@ -98,7 +103,7 @@
               <option>Photo</option>
               <option>Vidéo</option>
               <option>Drone</option>
-              <option>Montage & Color</option>
+              <option>Montage &amp; Color</option>
             </select>
           </div>
           <div>
