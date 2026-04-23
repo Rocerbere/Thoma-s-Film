@@ -1,71 +1,115 @@
-(() => {
-  const KEY_THEME = "tf_theme"; // "dark" | "light"
+/* =========================
+   REVEAL ANIMATION (scroll)
+========================= */
+const reveals = document.querySelectorAll(".reveal");
 
-  function setTheme(theme) {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem(KEY_THEME, theme);
+function revealOnScroll() {
+  reveals.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    const trigger = window.innerHeight - 100;
 
-    const themeToggle = document.querySelector('[data-toggle="theme"]');
-    if (themeToggle) {
-      themeToggle.setAttribute("data-on", theme === "light" ? "true" : "false");
-      const label = themeToggle.querySelector(".label");
-      if (label) label.textContent = theme === "light" ? "Noir" : "Blanc";
+    if (top < trigger) {
+      el.classList.add("visible");
     }
-  }
+  });
+}
 
-  function initTheme() {
-    // Nettoyage : ancien "device mode" (si présent)
-    try { localStorage.removeItem("tf_device"); } catch (e) {}
-    document.documentElement.removeAttribute("data-device");
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
 
-    const saved = localStorage.getItem(KEY_THEME);
-    setTheme(saved === "light" ? "light" : "dark");
-  }
 
-  function bindThemeToggle() {
-    const btn = document.querySelector('[data-toggle="theme"]');
-    if (!btn) return;
+/* =========================
+   MENU BURGER (mobile)
+========================= */
+const burger = document.querySelector("[data-burger]");
+const drawer = document.querySelector("[data-drawer]");
+
+if (burger && drawer) {
+  burger.addEventListener("click", () => {
+    drawer.classList.toggle("is-open");
+
+    const expanded = burger.getAttribute("aria-expanded") === "true";
+    burger.setAttribute("aria-expanded", !expanded);
+  });
+
+  // fermer quand on clique sur un lien
+  drawer.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      drawer.classList.remove("is-open");
+      burger.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
+
+/* =========================
+   FILTRES PORTFOLIO
+========================= */
+const filters = document.querySelectorAll("[data-filter]");
+const items = document.querySelectorAll("[data-cat]");
+
+if (filters.length && items.length) {
+  filters.forEach(btn => {
     btn.addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-theme") || "dark";
-      setTheme(current === "dark" ? "light" : "dark");
-    });
-  }
 
-  function fillYear() {
-    document.querySelectorAll("[data-year]").forEach((el) => {
-      el.textContent = String(new Date().getFullYear());
-    });
-  }
+      const value = btn.dataset.filter;
 
-  function bindMailtoForms() {
-    document.querySelectorAll("form[data-mailto]").forEach((form) => {
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
+      // active button
+      filters.forEach(b => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
 
-        const to = form.getAttribute("data-mailto") || "";
-        const v = (name) => form.querySelector(`[name="${name}"]`)?.value?.trim() || "";
+      // filter items
+      items.forEach(item => {
+        const categories = item.dataset.cat.split(" ");
 
-        const lastname = v("lastname");
-        const firstname = v("firstname");
-        const email = v("email");
-        const phone = v("phone");
-        const service = v("service");
-        const deadline = v("deadline");
-        const budget = v("budget");
-        const message = v("message");
-
-        const subject = encodeURIComponent(`Devis — ${service || "Projet"} — ${firstname} ${lastname}`.trim());
-        const body = encodeURIComponent(
-          `Nom: ${lastname}\nPrénom: ${firstname}\nEmail: ${email}\nTéléphone: ${phone}\n\nService: ${service}\nDeadline: ${deadline}\nBudget: ${budget}\n\nMessage:\n${message}\n`
-        );
-
-        window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+        if (value === "all" || categories.includes(value)) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
       });
+
     });
+  });
+}
+
+
+/* =========================
+   SMOOTH SCROLL PREMIUM (LENIS)
+========================= */
+if (typeof Lenis !== "undefined") {
+  const lenis = new Lenis({
+    duration: 1.2,
+    smooth: true
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
   }
 
-  initTheme();
-  bindThemeToggle();
-  fillYear();
-  bindMailtoForms();
-})();
+  requestAnimationFrame(raf);
+}
+
+
+/* =========================
+   NAV ACTIVE LINK
+========================= */
+const currentPage = window.location.pathname.split("/").pop();
+
+document.querySelectorAll("[data-nav]").forEach(link => {
+  const href = link.getAttribute("href");
+
+  if (href === currentPage || (href === "index.html" && currentPage === "")) {
+    link.classList.add("is-active");
+  }
+});
+
+
+/* =========================
+   FOOTER YEAR AUTO
+========================= */
+const year = document.getElementById("y");
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
